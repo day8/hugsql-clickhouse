@@ -11,7 +11,8 @@
  :source-paths #{"src" "test"}
  :resource-paths #{"src"}
  :dependencies '[[org.clojure/clojure "1.10.1"]
-                 [com.github.housepower/clickhouse-native-jdbc "1.7-stable"]
+                 [com.github.housepower/clickhouse-native-jdbc "2.5.6"]
+                 [ru.yandex.clickhouse/clickhouse-jdbc "0.3.1"]
                  [com.layerware/hugsql "0.4.9"]
                  [hikari-cp "2.7.1" :scope "test"]
                  [metosin/bat-test "0.4.3" :scope "test"]
