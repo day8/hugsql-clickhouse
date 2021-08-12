@@ -1,6 +1,6 @@
 # HugSQL Adapter ClickHouse Native JDBC
 
-An adapter between [HugSQL](https://www.hugsql.org/) and the [ClickHouse Native JDBC](https://github.com/housepower/ClickHouse-Native-JDBC) driver.
+An adapter between [HugSQL](https://www.hugsql.org/) and the [ClickHouse JDBC](https://github.com/ClickHouse/clickhouse-jdbc) driver.
 
 ## Usage
 
@@ -15,7 +15,7 @@ Then you have to install the adapter:
 ```clojure
 (ns core
   (:require [hugsql.core :as hugsql]
-            [hugsql.adapter.clickhouse-native-jdbc :as clickhouse]))
+            [hugsql.adapter.clickhouse-jdbc :as clickhouse]))
 
 (hugsql/def-db-fns "fns.sql")
 (hugsql/set-adapter! (clickhouse/hugsql-adapter-))

@@ -1,14 +1,14 @@
-(ns hugsql.adapter.clickhouse-native-jdbc-test
+(ns hugsql.adapter.clickhouse-jdbc-test
   (:require [clojure.test :refer :all]
             [hikari-cp.core :refer [close-datasource make-datasource]]
             [hugsql.core :as hugsql]
-            [hugsql.adapter.clickhouse-native-jdbc :as clickhouse])
+            [hugsql.adapter.clickhouse-jdbc :as clickhouse])
   (:import (java.sql Connection DriverManager)))
 
 (hugsql/def-db-fns "./hugsql/adapter/fns.sql")
-(hugsql/set-adapter! (clickhouse/hugsql-adapter-clickhouse-native-jdbc))
+(hugsql/set-adapter! (clickhouse/hugsql-adapter-clickhouse-jdbc))
 
-(def conn (.getConnection (make-datasource {:jdbc-url "jdbc:clickhouse://127.0.0.1:9000"})))
+(def conn (.getConnection (make-datasource {:jdbc-url "jdbc:clickhouse://127.0.0.1:8123"})))
 
 (def ocher {:id 1
             :name "ocher"

@@ -1,5 +1,5 @@
-(ns hugsql.adapter.clickhouse-native-jdbc
-  "ClickHouse native JDBC adapter for HugSQL."
+(ns hugsql.adapter.clickhouse-jdbc
+  "ClickHouse JDBC adapter for HugSQL."
   (:require [clojure.string :as string]
             [hugsql.adapter :as adapter])
   (:import (java.sql Connection DriverManager ResultSet Statement))
@@ -24,7 +24,7 @@
   "Turn a ClickHouse `result` into a map."
   [keys result]
   (reduce (fn [acc key]
-            (let [array? (instance? com.github.housepower.jdbc.ClickHouseArray (.getObject result key))]
+            (let [array? (instance? ru.yandex.clickhouse.ClickHouseArray (.getObject result key))]
               (cond array?
                     (assoc acc (keyword key) (vec (.getArray (.getObject result key))))
                     :else
@@ -71,7 +71,7 @@
       (recur (string/replace-first query #"\?" (object->string (first vals))) (rest vals))
       query)))
 
-(deftype HugsqlAdapterClickhouseNativeJdbc []
+(deftype HugsqlAdapterClickhouseJdbc []
 
   adapter/HugsqlAdapter
 
@@ -104,5 +104,5 @@
   (on-exception [this exception]
     (throw exception)))
 
-(defn hugsql-adapter-clickhouse-native-jdbc []
-  (->HugsqlAdapterClickhouseNativeJdbc))
+(defn hugsql-adapter-clickhouse-jdbc []
+  (->HugsqlAdapterClickhouseJdbc))
